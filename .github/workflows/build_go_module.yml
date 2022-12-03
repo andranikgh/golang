@@ -26,7 +26,7 @@ jobs:
     - name: Set up Go env
       uses: actions/setup-go@v3
       with:
-        go-version: github.event.inputs.goVersion
+        go-version: ${{ github.event.inputs.goVersion }}
 
     - name: Check out code into the Go module directory
       uses: actions/checkout@v3
