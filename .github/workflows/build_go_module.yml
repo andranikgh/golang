@@ -10,6 +10,7 @@ on:
       goVersion:
         type: choice
         description: go Versions
+        requires: true
         options: 
         - 1.18
         - 1.19
@@ -19,13 +20,13 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: Check output
+    - name: Check go version 
       run: |
-        echo "Tage name main" ${{ github.event.inputs.goVersion }}
+        echo "Go version is" ${{ github.event.inputs.goVersion }}
     - name: Set up Go env
       uses: actions/setup-go@v3
       with:
-        go-version: 1.18
+        go-version: github.event.inputs.goVersion
 
     - name: Check out code into the Go module directory
       uses: actions/checkout@v3
