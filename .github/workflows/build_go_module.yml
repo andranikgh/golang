@@ -21,7 +21,7 @@ jobs:
     steps:
     - name: Check output
       run: |
-        echo "Tage name main" ${{ github.event.inputs.name }}
+        echo "Tage name main" ${{ github.event.inputs.goVersion }}
     - name: Set up Go env
       uses: actions/setup-go@v3
       with:
