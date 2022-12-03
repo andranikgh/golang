@@ -29,9 +29,9 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Get dependencies & build
-      working-directory: ./examples
+      working-directory: .
       run: go build -mod=readonly -v
 
     - name: Test
-      working-directory: ./examples
+      working-directory: .
       run: echo "There are not existing tests yet"
