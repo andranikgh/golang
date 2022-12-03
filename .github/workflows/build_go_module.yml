@@ -8,9 +8,11 @@ on:
   workflow_dispatch:
     inputs:
       goVersion:
-        description: 'Golang version'
-        required: true
-        default: 1.18
+        type: choice
+        description: go Versions
+        options: 
+        - 1.18
+        - 1.19
 jobs:
 
   build:
@@ -19,7 +21,7 @@ jobs:
     steps:
     - name: Check output
       run: |
-        echo "Tage name main" ${{ steps.vars.outputs.goVersion }}
+        echo "Tage name main" ${{ github.event.inputs.name }}
     - name: Set up Go env
       uses: actions/setup-go@v3
       with:
