@@ -1,0 +1,37 @@
+name: Build Go module
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      goVersion:
+        description: 'Golang version'
+        required: true
+        default: 1.18
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check output
+      run: |
+        echo "Tage name main" ${{ steps.vars.outputs.goVersion }}
+    - name: Set up Go env
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.18
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v3
+
+    - name: Get dependencies & build
+      working-directory: ./examples
+      run: go build -mod=readonly -v
+
+    - name: Test
+      working-directory: ./examples
+      run: echo "There are not existing tests yet"
